@@ -7,6 +7,7 @@ import {SelectedWorks} from "@/components/works/SelectedWorks";
 // import {VideoArchive} from "@/components/video/VideoArchive";
 import {CareerTimeline} from "@/components/archive/CareerTimeline";
 import {ContactSection} from "@/components/contact/ContactSection";
+import {ScrollToTop} from "@/components/ui/ScrollToTop";
 
 export default function Home() {
   return (
@@ -37,6 +38,9 @@ export default function Home() {
         {/* Section 05: Contact Us */}
         <ContactSection />
       </main>
+
+      {/* Retro Floating Scroll To Top Button */}
+      <ScrollToTop />
 
       {/* Footer */}
       <Footer />
