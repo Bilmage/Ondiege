@@ -29,7 +29,7 @@ export default function Home() {
         <SelectedWorks />
 
         {/* Section 03: Moving Image / Video Archive */}
-        <VideoArchive />
+        {/* <VideoArchive /> */}
 
         {/* Section 04: Artistic Archive / Career Timeline */}
         <CareerTimeline />
