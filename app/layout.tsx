@@ -1,5 +1,5 @@
-import type {Metadata} from "next";
-import {Inter, JetBrains_Mono, Playfair_Display} from "next/font/google";
+import type { Metadata } from "next";
+import { JetBrains_Mono, Playfair_Display, Urbanist } from "next/font/google";
 import "./globals.css";
 
 const playfairDisplay = Playfair_Display({
@@ -8,7 +8,7 @@ const playfairDisplay = Playfair_Display({
   display: "swap",
 });
 
-const inter = Inter({
+const urbanist = Urbanist({
   variable: "--font-body",
   subsets: ["latin"],
   display: "swap",
@@ -47,7 +47,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${playfairDisplay.variable} ${inter.variable} ${jetbrainsMono.variable}`}
+      className={`${playfairDisplay.variable} ${urbanist.variable} ${jetbrainsMono.variable}`}
     >
       <body>{children}</body>
     </html>
