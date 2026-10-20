@@ -8,18 +8,32 @@ import { VideoJsPlayer } from "./VideoJsPlayer";
 
 export function VideoArchive() {
   const [isPlayingFeatured, setIsPlayingFeatured] = useState(false);
+  const [selectedVideoIndex, setSelectedVideoIndex] = useState(0);
 
-  const primaryVideo = videosData[0];
-  const youtubeEmbedUrl = primaryVideo.youtubeUrl.includes("watch?v=")
-    ? primaryVideo.youtubeUrl.replace("watch?v=", "embed/")
-    : primaryVideo.youtubeUrl;
+  const currentVideo = videosData[selectedVideoIndex] || videosData[0];
+
+  const getEmbedUrl = (url: string, isPlaylist = false) => {
+    if (isPlaylist && url.includes("playlist?list=")) {
+      const listId = url.split("list=")[1]?.split("&")[0];
+      return `https://www.youtube.com/embed/videoseries?list=${listId}`;
+    }
+    if (url.includes("youtu.be/")) {
+      const videoId = url.split("youtu.be/")[1]?.split("?")[0];
+      return `https://www.youtube.com/embed/${videoId}`;
+    }
+    if (url.includes("watch?v=")) {
+      const videoId = url.split("watch?v=")[1]?.split("&")[0];
+      return `https://www.youtube.com/embed/${videoId}`;
+    }
+    return url;
+  };
 
   const videoJsOptions = {
     autoplay: true,
     controls: true,
     responsive: true,
     fluid: true,
-    poster: "/aWCa18V8.jpg",
+    poster: currentVideo.thumbnail || "/kenya-sometimes/aWCa18V8.jpg",
     sources: [
       {
         src: "/hero-video.mp4",
@@ -41,24 +55,41 @@ export function VideoArchive() {
           heading="Watch the work."
         />
 
-        <p className="font-body text-base text-[var(--color-neutral)] max-w-2xl mb-14 leading-relaxed">
-          A curated video shelf rather than an endless feed. New work can be added here as it is selected and edited.
-        </p>
+        {/* Video Shelf Selector */}
+        <div className="flex flex-wrap gap-4 mb-10">
+          {videosData.map((v, i) => (
+            <button
+              key={v.id}
+              onClick={() => {
+                setSelectedVideoIndex(i);
+                setIsPlayingFeatured(false);
+              }}
+              className={`font-mono text-xs uppercase tracking-[0.2em] px-4 py-2 border transition-all cursor-pointer ${
+                selectedVideoIndex === i
+                  ? "bg-[var(--color-burnt-orange)] text-white border-[var(--color-burnt-orange)]"
+                  : "bg-[var(--color-cream-light)] text-[var(--color-charcoal)] border-[var(--color-charcoal)]/20 hover:border-[var(--color-burnt-orange)]"
+              }`}
+            >
+              0{i + 1} {"//"} {v.title}
+            </button>
+          ))}
+        </div>
 
         {/* ══════════════════════════════════════════════════════════════
-            FEATURED PERFORMANCE PLAYER (Video.js Architecture)
-            - Circular play button aesthetic directly matching reference screenshot 4
-            - Seamless switch between archival cover and Video.js playback
+            FEATURED VIDEO PLAYER (Video.js Architecture + YouTube Toggle)
            ══════════════════════════════════════════════════════════════ */}
         <div className="bg-[var(--color-charcoal)] text-[var(--color-cream)] border border-[var(--color-charcoal)]/20 shadow-2xl overflow-hidden mb-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
             {/* Player Container */}
             <div className="lg:col-span-8 relative aspect-video bg-black flex items-center justify-center">
               {!isPlayingFeatured ? (
-                <div className="relative w-full h-full group cursor-pointer overflow-hidden" onClick={() => setIsPlayingFeatured(true)}>
+                <div
+                  className="relative w-full h-full group cursor-pointer overflow-hidden"
+                  onClick={() => setIsPlayingFeatured(true)}
+                >
                   <Image
-                    src="/aWCa18V8.jpg"
-                    alt="Onyango Ondiege performing Kenya Sometimes - Video Cover"
+                    src={currentVideo.thumbnail || "/kenya-sometimes/aWCa18V8.jpg"}
+                    alt={`${currentVideo.title} video cover`}
                     fill
                     sizes="(max-width: 1024px) 100vw, 66vw"
                     className="object-cover object-center filter grayscale contrast-125 opacity-75 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700"
@@ -66,7 +97,7 @@ export function VideoArchive() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-charcoal)] via-transparent to-transparent opacity-80" />
 
-                  {/* Circular Play Button (Direct reproduction of Reference 4) */}
+                  {/* Circular Play Button (Reference 4 Motif) */}
                   <div className="absolute inset-0 flex items-center justify-center">
                     <button
                       type="button"
@@ -96,24 +127,24 @@ export function VideoArchive() {
               )}
             </div>
 
-            {/* Placard / Curatorial Description Panel (Matching Reference 4 Typography) */}
+            {/* Placard / Curatorial Description Panel */}
             <div className="lg:col-span-4 p-8 sm:p-10 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-[var(--color-charcoal-mid)] bg-[var(--color-charcoal)]">
               <div>
                 <div className="flex items-center justify-between mb-4 pb-2 border-b border-[var(--color-charcoal-mid)]">
                   <span className="font-mono text-xs uppercase tracking-widest text-[var(--color-burnt-orange-light)] font-semibold">
-                    {primaryVideo.period}
+                    {currentVideo.period}
                   </span>
                   <span className="font-mono text-[0.625rem] uppercase tracking-wider text-[var(--color-cream)]/70 px-2 py-0.5 border border-[var(--color-cream)]/20">
-                    {primaryVideo.type}
+                    {currentVideo.type}
                   </span>
                 </div>
 
                 <h3 className="font-display text-2xl sm:text-3xl font-bold uppercase tracking-tight text-[var(--color-cream)] mb-4">
-                  {primaryVideo.title}
+                  {currentVideo.title}
                 </h3>
 
                 <p className="font-body text-xs sm:text-sm text-[var(--color-neutral-light)] leading-relaxed mb-6">
-                  {primaryVideo.description}
+                  {currentVideo.description}
                 </p>
 
                 <div className="font-mono text-xs text-[var(--color-neutral-light)] space-y-2 border-t border-[var(--color-charcoal-mid)] pt-4">
@@ -124,20 +155,21 @@ export function VideoArchive() {
                     <span className="text-[var(--color-neutral)]">CHOREOGRAPHY:</span> Onyango Ondiege
                   </p>
                   <p>
-                    <span className="text-[var(--color-neutral)]">LOCATION:</span> Nairobi, Kenya
+                    <span className="text-[var(--color-neutral)]">FORMAT:</span>{" "}
+                    {currentVideo.isPlaylist ? "YouTube Series / Playlist" : "Solo Soliloquy"}
                   </p>
                 </div>
               </div>
 
-              {/* YouTube Archival Stream Link & Switcher */}
+              {/* YouTube Archival Stream Direct Link */}
               <div className="mt-8 pt-6 border-t border-[var(--color-charcoal-mid)] flex flex-col gap-3">
                 <a
-                  href={primaryVideo.youtubeUrl}
+                  href={currentVideo.youtubeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-between font-mono text-xs uppercase tracking-wider text-[var(--color-burnt-orange-light)] hover:text-[var(--color-cream)] transition-colors p-3 bg-[var(--color-charcoal-light)] border border-[var(--color-charcoal-mid)]"
                 >
-                  <span>Watch on YouTube</span>
+                  <span>{currentVideo.isPlaylist ? "Open YouTube Playlist" : "Watch on YouTube"}</span>
                   <span>↗</span>
                 </a>
               </div>
@@ -146,27 +178,27 @@ export function VideoArchive() {
         </div>
 
         {/* ══════════════════════════════════════════════════════════════
-            YOUTUBE ARCHIVAL FEED (Secondary Curated Stream)
+            YOUTUBE EMBEDDED STREAM
            ══════════════════════════════════════════════════════════════ */}
         <div className="bg-[var(--color-cream-light)] border border-[var(--color-charcoal)]/15 p-6 sm:p-10">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 pb-4 border-b border-[var(--color-charcoal)]/10 gap-2">
             <div>
               <span className="font-mono text-xs uppercase tracking-widest text-[var(--color-burnt-orange)] font-semibold block mb-1">
-                STREAM ARCHIVE
+                STREAM ARCHIVE // {currentVideo.isPlaylist ? "PLAYLIST" : "PERFORMANCE"}
               </span>
               <h4 className="font-display text-2xl font-bold uppercase tracking-tight text-[var(--color-charcoal)]">
-                YouTube Official Performance Recording
+                {currentVideo.title}
               </h4>
             </div>
             <span className="font-mono text-xs text-[var(--color-neutral)]">
-              SOLO SOLILOQUY // COMPLETE RECORDING
+              {currentVideo.isPlaylist ? "MULTI-PART DOCUMENTATION" : "COMPLETE PERFORMANCE RECORDING"}
             </span>
           </div>
 
           <div className="aspect-video w-full bg-black overflow-hidden border border-[var(--color-charcoal)]/15 shadow-md">
             <iframe
-              src={youtubeEmbedUrl}
-              title={`${primaryVideo.title} - Official Video Stream`}
+              src={getEmbedUrl(currentVideo.youtubeUrl, currentVideo.isPlaylist)}
+              title={`${currentVideo.title} - Official Video Stream`}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               className="w-full h-full border-0"

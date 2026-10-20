@@ -31,7 +31,7 @@ export function AboutSection() {
             />
             <div className="relative z-10 aspect-[3/4] w-full max-w-md mx-auto overflow-hidden bg-[var(--color-charcoal)] shadow-xl border border-[var(--color-charcoal)]/15">
               <Image
-                src="/IMG_9047.jpg"
+                src="/kenya-sometimes/IMG_9047.jpg"
                 alt="Portrait of Onyango Ondiege OGW in performance costume"
                 fill
                 sizes="(max-width: 1024px) 100vw, 40vw"
