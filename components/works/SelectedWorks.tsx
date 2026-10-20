@@ -4,6 +4,7 @@ import {useState} from "react";
 import Image from "next/image";
 import {WorkMediaItem, worksData} from "@/data/works";
 import {SectionHeading} from "@/components/ui/SectionHeading";
+import {RetroArrows} from "@/components/ui/RetroArrows";
 
 export function SelectedWorks() {
   const kenyaSometimes = worksData.find((w) => w.id === "kenya-sometimes") || worksData[0];
@@ -435,11 +436,7 @@ export function SelectedWorks() {
               <h4 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-[var(--color-charcoal)]">
                 PORTFOLIO
               </h4>
-              <div className="hidden sm:flex items-center gap-2 text-[var(--color-burnt-orange)]" aria-hidden="true">
-                <span className="text-xl">◀</span>
-                <span className="text-xl">◀</span>
-                <span className="font-mono tracking-tighter text-sm">|||||</span>
-              </div>
+              <RetroArrows />
             </div>
 
             <p className="font-body text-sm sm:text-base text-[var(--color-charcoal-light)] max-w-md leading-relaxed font-medium">

@@ -4,7 +4,7 @@ import {GrainOverlay} from "@/components/ui/GrainOverlay";
 import {HeroSection} from "@/components/home/HeroSection";
 import {AboutSection} from "@/components/about/AboutSection";
 import {SelectedWorks} from "@/components/works/SelectedWorks";
-import {VideoArchive} from "@/components/video/VideoArchive";
+// import {VideoArchive} from "@/components/video/VideoArchive";
 import {CareerTimeline} from "@/components/archive/CareerTimeline";
 import {ContactSection} from "@/components/contact/ContactSection";
 
