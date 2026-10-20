@@ -1,4 +1,4 @@
-import { contactData } from "@/data/contact";
+import {contactData} from "@/data/contact";
 
 export function Footer() {
   const currentYear = 2026;

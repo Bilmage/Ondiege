@@ -1,4 +1,4 @@
-import { artistData } from "@/data/artist";
+import {artistData} from "@/data/artist";
 
 export function HeroSection() {
   return (

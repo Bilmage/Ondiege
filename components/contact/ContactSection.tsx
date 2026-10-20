@@ -1,5 +1,5 @@
-import { contactData } from "@/data/contact";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import {contactData} from "@/data/contact";
+import {SectionHeading} from "@/components/ui/SectionHeading";
 
 export function ContactSection() {
   return (

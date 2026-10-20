@@ -1,12 +1,12 @@
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
-import { GrainOverlay } from "@/components/ui/GrainOverlay";
-import { HeroSection } from "@/components/home/HeroSection";
-import { AboutSection } from "@/components/about/AboutSection";
-import { SelectedWorks } from "@/components/works/SelectedWorks";
-import { VideoArchive } from "@/components/video/VideoArchive";
-import { CareerTimeline } from "@/components/archive/CareerTimeline";
-import { ContactSection } from "@/components/contact/ContactSection";
+import {Navbar} from "@/components/layout/Navbar";
+import {Footer} from "@/components/layout/Footer";
+import {GrainOverlay} from "@/components/ui/GrainOverlay";
+import {HeroSection} from "@/components/home/HeroSection";
+import {AboutSection} from "@/components/about/AboutSection";
+import {SelectedWorks} from "@/components/works/SelectedWorks";
+import {VideoArchive} from "@/components/video/VideoArchive";
+import {CareerTimeline} from "@/components/archive/CareerTimeline";
+import {ContactSection} from "@/components/contact/ContactSection";
 
 export default function Home() {
   return (
@@ -29,7 +29,7 @@ export default function Home() {
         <SelectedWorks />
 
         {/* Section 03: Moving Image / Video Archive */}
-        <VideoArchive />
+        {/* <VideoArchive /> */}
 
         {/* Section 04: Artistic Archive / Career Timeline */}
         <CareerTimeline />

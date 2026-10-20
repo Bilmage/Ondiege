@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import {useState} from "react";
 import Image from "next/image";
-import { worksData, WorkMediaItem } from "@/data/works";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import {WorkMediaItem, worksData} from "@/data/works";
+import {SectionHeading} from "@/components/ui/SectionHeading";
 
 export function SelectedWorks() {
   const kenyaSometimes = worksData.find((w) => w.id === "kenya-sometimes") || worksData[0];

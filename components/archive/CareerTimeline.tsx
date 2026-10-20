@@ -1,5 +1,5 @@
-import { timelineData } from "@/data/timeline";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import {timelineData} from "@/data/timeline";
+import {SectionHeading} from "@/components/ui/SectionHeading";
 
 export function CareerTimeline() {
   return (

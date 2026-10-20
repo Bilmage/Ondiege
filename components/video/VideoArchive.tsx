@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import {useState} from "react";
 import Image from "next/image";
-import { videosData } from "@/data/videos";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { VideoJsPlayer } from "./VideoJsPlayer";
+import {videosData} from "@/data/videos";
+import {SectionHeading} from "@/components/ui/SectionHeading";
+import {VideoJsPlayer} from "./VideoJsPlayer";
 
 export function VideoArchive() {
   const [isPlayingFeatured, setIsPlayingFeatured] = useState(false);

@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { artistData } from "@/data/artist";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import {artistData} from "@/data/artist";
+import {SectionHeading} from "@/components/ui/SectionHeading";
 
 export function AboutSection() {
   const paragraphs = artistData.biography.split("\n\n");
