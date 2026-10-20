@@ -64,11 +64,10 @@ export function VideoArchive() {
                 setSelectedVideoIndex(i);
                 setIsPlayingFeatured(false);
               }}
-              className={`font-mono text-xs uppercase tracking-[0.2em] px-4 py-2 border transition-all cursor-pointer ${
-                selectedVideoIndex === i
+              className={`font-mono text-xs uppercase tracking-[0.2em] px-4 py-2 border transition-all cursor-pointer ${selectedVideoIndex === i
                   ? "bg-[var(--color-burnt-orange)] text-white border-[var(--color-burnt-orange)]"
                   : "bg-[var(--color-cream-light)] text-[var(--color-charcoal)] border-[var(--color-charcoal)]/20 hover:border-[var(--color-burnt-orange)]"
-              }`}
+                }`}
             >
               0{i + 1} {"//"} {v.title}
             </button>
@@ -79,9 +78,9 @@ export function VideoArchive() {
             FEATURED VIDEO PLAYER (Video.js Architecture + YouTube Toggle)
            ══════════════════════════════════════════════════════════════ */}
         <div className="bg-[var(--color-charcoal)] text-[var(--color-cream)] border border-[var(--color-charcoal)]/20 shadow-2xl overflow-hidden mb-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
-            {/* Player Container */}
-            <div className="lg:col-span-8 relative aspect-video bg-black flex items-center justify-center">
+          <div className="flex flex-col xl:flex-row items-stretch">
+            {/* Player Container - Constrained to 55-60% on XL screens, full width stacked on smaller screens */}
+            <div className="w-full xl:w-[58%] relative aspect-video bg-black flex items-center justify-center shrink-0">
               {!isPlayingFeatured ? (
                 <div
                   className="relative w-full h-full group cursor-pointer overflow-hidden"
@@ -91,7 +90,7 @@ export function VideoArchive() {
                     src={currentVideo.thumbnail || "/kenya-sometimes/aWCa18V8.jpg"}
                     alt={`${currentVideo.title} video cover`}
                     fill
-                    sizes="(max-width: 1024px) 100vw, 66vw"
+                    sizes="(max-width: 1280px) 100vw, 58vw"
                     className="object-cover object-center filter grayscale contrast-125 opacity-75 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700"
                     priority
                   />
@@ -102,10 +101,10 @@ export function VideoArchive() {
                     <button
                       type="button"
                       aria-label="Play video"
-                      className="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-2 border-[var(--color-cream-light)] flex items-center justify-center backdrop-blur-sm bg-black/30 group-hover:scale-110 group-hover:border-[var(--color-burnt-orange)] group-hover:bg-[var(--color-burnt-orange)]/20 transition-all duration-300"
+                      className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-[var(--color-cream-light)] flex items-center justify-center backdrop-blur-sm bg-black/40 group-hover:scale-110 group-hover:border-[var(--color-burnt-orange)] group-hover:bg-[var(--color-burnt-orange)]/40 transition-all duration-300 cursor-pointer"
                     >
                       <svg
-                        className="w-8 h-8 sm:w-10 sm:h-10 text-[var(--color-cream-light)] translate-x-1"
+                        className="w-7 h-7 sm:w-9 sm:h-9 text-[var(--color-cream-light)] translate-x-0.5"
                         fill="currentColor"
                         viewBox="0 0 24 24"
                       >
@@ -114,8 +113,8 @@ export function VideoArchive() {
                     </button>
                   </div>
 
-                  <div className="absolute bottom-4 left-4 z-10">
-                    <span className="font-mono text-xs uppercase tracking-widest text-[var(--color-burnt-orange-light)]">
+                  <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 z-10">
+                    <span className="font-mono text-[0.625rem] sm:text-xs uppercase tracking-widest text-[var(--color-burnt-orange-light)] bg-black/60 px-2 py-1 border border-[var(--color-burnt-orange-light)]/30">
                       CLICK TO INITIATE VIDEO.JS ARCHIVE PLAYER
                     </span>
                   </div>
@@ -127,19 +126,19 @@ export function VideoArchive() {
               )}
             </div>
 
-            {/* Placard / Curatorial Description Panel */}
-            <div className="lg:col-span-4 p-8 sm:p-10 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-[var(--color-charcoal-mid)] bg-[var(--color-charcoal)]">
+            {/* Placard / Curatorial Description Panel - Guaranteed 42% width on desktop, full width on laptop/tablet */}
+            <div className="w-full xl:w-[42%] p-6 sm:p-8 lg:p-10 flex flex-col justify-between border-t xl:border-t-0 xl:border-l border-[var(--color-charcoal-mid)] bg-[var(--color-charcoal)]">
               <div>
-                <div className="flex items-center justify-between mb-4 pb-2 border-b border-[var(--color-charcoal-mid)]">
-                  <span className="font-mono text-xs uppercase tracking-widest text-[var(--color-burnt-orange-light)] font-semibold">
+                <div className="flex items-center justify-between mb-4 pb-2 border-b border-[var(--color-charcoal-mid)] gap-2 flex-wrap">
+                  <span className="font-mono text-xs uppercase tracking-widest text-[var(--color-burnt-orange-light)] font-bold">
                     {currentVideo.period}
                   </span>
-                  <span className="font-mono text-[0.625rem] uppercase tracking-wider text-[var(--color-cream)]/70 px-2 py-0.5 border border-[var(--color-cream)]/20">
+                  <span className="font-mono text-[0.625rem] uppercase tracking-wider text-[var(--color-cream)]/80 px-2 py-0.5 border border-[var(--color-cream)]/20 font-medium">
                     {currentVideo.type}
                   </span>
                 </div>
 
-                <h3 className="font-display text-2xl sm:text-3xl font-bold uppercase tracking-tight text-[var(--color-cream)] mb-4">
+                <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold uppercase tracking-tight text-[var(--color-cream)] mb-4 break-words">
                   {currentVideo.title}
                 </h3>
 
@@ -149,13 +148,13 @@ export function VideoArchive() {
 
                 <div className="font-mono text-xs text-[var(--color-neutral-light)] space-y-2 border-t border-[var(--color-charcoal-mid)] pt-4">
                   <p>
-                    <span className="text-[var(--color-neutral)]">PLAYER ENGINE:</span> Video.js HTML5
+                    <span className="text-[var(--color-neutral)] font-medium">PLAYER ENGINE:</span> Video.js HTML5
                   </p>
                   <p>
-                    <span className="text-[var(--color-neutral)]">CHOREOGRAPHY:</span> Onyango Ondiege
+                    <span className="text-[var(--color-neutral)] font-medium">CHOREOGRAPHY:</span> Onyango Ondiege
                   </p>
                   <p>
-                    <span className="text-[var(--color-neutral)]">FORMAT:</span>{" "}
+                    <span className="text-[var(--color-neutral)] font-medium">FORMAT:</span>{" "}
                     {currentVideo.isPlaylist ? "YouTube Series / Playlist" : "Solo Soliloquy"}
                   </p>
                 </div>
@@ -167,7 +166,7 @@ export function VideoArchive() {
                   href={currentVideo.youtubeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-between font-mono text-xs uppercase tracking-wider text-[var(--color-burnt-orange-light)] hover:text-[var(--color-cream)] transition-colors p-3 bg-[var(--color-charcoal-light)] border border-[var(--color-charcoal-mid)]"
+                  className="inline-flex items-center justify-between font-mono text-xs uppercase tracking-wider text-[var(--color-burnt-orange-light)] hover:text-[var(--color-cream)] transition-colors p-3 bg-[var(--color-charcoal-light)] border border-[var(--color-charcoal-mid)] font-semibold"
                 >
                   <span>{currentVideo.isPlaylist ? "Open YouTube Playlist" : "Watch on YouTube"}</span>
                   <span>↗</span>

@@ -433,7 +433,7 @@ export function SelectedWorks() {
           <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-12 gap-8">
             <div className="flex items-center gap-6">
               <h4 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-[var(--color-charcoal)]">
-                THREE <span className="font-normal font-sans tracking-wide">COLUMNS</span>
+                PORTFOLIO
               </h4>
               <div className="hidden sm:flex items-center gap-2 text-[var(--color-burnt-orange)]" aria-hidden="true">
                 <span className="text-xl">◀</span>
@@ -442,7 +442,7 @@ export function SelectedWorks() {
               </div>
             </div>
 
-            <p className="font-body text-xs sm:text-sm text-[var(--color-neutral)] max-w-md leading-relaxed">
+            <p className="font-body text-sm sm:text-base text-[var(--color-charcoal-light)] max-w-md leading-relaxed font-medium">
               Curated visual index of performance photography and choreographic archives across solo and ensemble inquiries.
             </p>
           </div>
@@ -453,7 +453,7 @@ export function SelectedWorks() {
               onClick={() => setActiveTab("all")}
               className={`font-mono text-xs uppercase tracking-[0.2em] pb-2 transition-all relative cursor-pointer ${activeTab === "all"
                 ? "text-[var(--color-burnt-orange)] font-bold"
-                : "text-[var(--color-neutral)] hover:text-[var(--color-charcoal)]"
+                : "text-[var(--color-neutral-dark)] hover:text-[var(--color-charcoal)] font-semibold"
                 }`}
             >
               SHOW ALL
@@ -466,7 +466,7 @@ export function SelectedWorks() {
               onClick={() => setActiveTab("kenya-sometimes")}
               className={`font-mono text-xs uppercase tracking-[0.2em] pb-2 transition-all relative cursor-pointer ${activeTab === "kenya-sometimes"
                 ? "text-[var(--color-burnt-orange)] font-bold"
-                : "text-[var(--color-neutral)] hover:text-[var(--color-charcoal)]"
+                : "text-[var(--color-neutral-dark)] hover:text-[var(--color-charcoal)] font-semibold"
                 }`}
             >
               KENYA SOMETIMES
@@ -479,7 +479,7 @@ export function SelectedWorks() {
               onClick={() => setActiveTab("nyanam")}
               className={`font-mono text-xs uppercase tracking-[0.2em] pb-2 transition-all relative cursor-pointer ${activeTab === "nyanam"
                 ? "text-[var(--color-burnt-orange)] font-bold"
-                : "text-[var(--color-neutral)] hover:text-[var(--color-charcoal)]"
+                : "text-[var(--color-neutral-dark)] hover:text-[var(--color-charcoal)] font-semibold"
                 }`}
             >
               NYANAM
@@ -494,7 +494,7 @@ export function SelectedWorks() {
             {portfolioItems.map((entry, idx) => (
               <article
                 key={`${entry.projectId}-${idx}`}
-                className="group flex flex-col bg-[var(--color-cream)] border border-[var(--color-charcoal)]/15 hover:border-[var(--color-burnt-orange)] transition-all duration-300 shadow-sm"
+                className="group flex flex-col bg-[var(--color-cream-light)] border-2 border-[var(--color-charcoal)]/20 hover:border-[var(--color-burnt-orange)] transition-all duration-300 shadow-md overflow-hidden"
               >
                 {/* Image Frame */}
                 <div className="relative aspect-[4/5] w-full overflow-hidden bg-[var(--color-charcoal)]">
@@ -505,23 +505,23 @@ export function SelectedWorks() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover object-top filter grayscale contrast-110 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-charcoal)]/70 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-charcoal)]/80 via-transparent to-transparent pointer-events-none" />
 
                   {/* Corner Accent Badge */}
                   <div className="absolute bottom-3 left-3 z-10">
-                    <span className="font-mono text-[0.5625rem] uppercase tracking-[0.2em] px-2 py-0.5 bg-[var(--color-charcoal)]/90 text-white border border-white/20">
+                    <span className="font-mono text-[0.625rem] sm:text-xs uppercase tracking-[0.2em] px-2.5 py-1 bg-[var(--color-charcoal)] text-white border border-white/30 font-semibold shadow-sm">
                       {entry.item.categoryTag || entry.projectTitle}
                     </span>
                   </div>
                 </div>
 
-                {/* Caption Bar (Directly matching Vibez Screenshot) */}
-                <div className="p-5 flex flex-col justify-between flex-1">
+                {/* Caption Bar (High contrast and clearly legible) */}
+                <div className="p-5 sm:p-6 flex flex-col justify-between flex-1 bg-[var(--color-cream-light)] border-t border-[var(--color-charcoal)]/15">
                   <div>
-                    <h5 className="font-display text-xl font-bold uppercase tracking-tight text-[var(--color-charcoal)] group-hover:text-[var(--color-burnt-orange)] transition-colors mb-1">
+                    <h5 className="font-display text-xl sm:text-2xl font-bold uppercase tracking-tight text-[var(--color-charcoal)] group-hover:text-[var(--color-burnt-orange)] transition-colors mb-2 leading-tight">
                       {entry.item.caption || entry.projectTitle}
                     </h5>
-                    <p className="font-mono text-xs text-[var(--color-neutral)] uppercase tracking-wider">
+                    <p className="font-mono text-xs sm:text-sm text-[var(--color-burnt-orange)] uppercase tracking-wider font-semibold">
                       {entry.projectTitle} · {entry.projectPeriod}
                     </p>
                   </div>

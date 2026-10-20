@@ -7,18 +7,19 @@ export function HeroSection() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[var(--color-charcoal)] text-[var(--color-cream)] pt-20"
       aria-label="Hero section"
     >
-      {/* Video Background with Poster & Graceful Fallback */}
+      {/* Video Background with Real Moving Video and Fallback Image */}
       <div className="absolute inset-0 z-0">
         <video
           autoPlay
           muted
           loop
           playsInline
-          className="w-full h-full object-cover opacity-35 filter contrast-125 grayscale"
-          poster="/hero-poster.jpg"
+          className="w-full h-full object-cover opacity-40 filter contrast-125 grayscale"
+          poster="/nyanam/Nyanam3.jpg"
           aria-hidden="true"
         >
-          <source src="/hero-video.mp4" type="video/mp4" />
+          <source src="/video/performance-reel.mp4" type="video/mp4" />
+          <source src="/video/WhatsApp%20Video%202026-10-20%20at%2011.11.05.mp4" type="video/mp4" />
         </video>
         {/* Layered overlays: retro vignette and contrast treatment */}
         <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-charcoal)]/85 via-[var(--color-charcoal)]/40 to-[var(--color-charcoal)]/95" />
@@ -82,7 +83,7 @@ export function HeroSection() {
             Explore Archive
           </a>
           <a
-            href="#video"
+            href="#works"
             className="w-full sm:w-auto px-8 py-3.5 border border-[var(--color-cream)]/30 text-[var(--color-cream)] font-mono text-xs uppercase tracking-[0.18em] hover:border-[var(--color-burnt-orange)] hover:text-[var(--color-burnt-orange-light)] transition-colors duration-300"
           >
             Watch The Work

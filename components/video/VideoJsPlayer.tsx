@@ -46,13 +46,17 @@ export function VideoJsPlayer({ options, onReady, className = "" }: VideoJsPlaye
       videoElement.classList.add("vjs-big-play-centered", "retro-vjs-theme");
       videoRef.current.appendChild(videoElement);
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const playerInstance = (videojs as any)(videoElement, options, () => {
+      const videojsFn = videojs as unknown as (
+        element: Element,
+        options?: VideoJsPlayerOptions,
+        ready?: () => void
+      ) => VideoJsPlayerInstance;
+      const playerInstance = videojsFn(videoElement, options, () => {
         if (onReady) {
-          onReady(playerInstance as VideoJsPlayerInstance);
+          onReady(playerInstance);
         }
       });
-      playerRef.current = playerInstance as VideoJsPlayerInstance;
+      playerRef.current = playerInstance;
     } else if (playerRef.current) {
       const player = playerRef.current;
       if (options.autoplay !== undefined) {
