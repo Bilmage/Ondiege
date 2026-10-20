@@ -18,7 +18,7 @@ export const timelineData: TimelineEntry[] = [
   {
     year: "2005 onward",
     title: "Mixed-ability practice",
-    description: "Developed and sustained dance practice bringing disabled and non-disabled artists together in Kenya."
+    description: "Developed and sustained dance practice bringing disabled and non-disabled artists together for the first time in Kenya."
   },
   {
     year: "2013",
