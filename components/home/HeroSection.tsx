@@ -1,4 +1,4 @@
-import {artistData} from "@/data/artist";
+import { artistData } from "@/data/artist";
 
 export function HeroSection() {
   return (
@@ -18,7 +18,7 @@ export function HeroSection() {
           poster="/nyanam/Nyanam3.jpg"
           aria-hidden="true"
         >
-          <source src="/video/performance-reel.mp4" type="video/mp4" />
+          <source src="/video/performance-reel-2.mp4" type="video/mp4" />
           <source src="/video/WhatsApp%20Video%202026-10-20%20at%2011.11.05.mp4" type="video/mp4" />
         </video>
         {/* Layered overlays: retro vignette and contrast treatment */}

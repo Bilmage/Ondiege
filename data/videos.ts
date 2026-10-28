@@ -16,7 +16,7 @@ export const videosData: Video[] = [
     period: "2026",
     type: "Current Production",
     description: "A solo performance built around the body negotiating the invisible architectures of survival, hope, and transformation in contemporary Kenya.",
-    youtubeUrl: "https://youtu.be/mjUBPCT3bfI?si=DnZXEa8TyyPv_alJ",
+    youtubeUrl: "https://youtu.be/0ZQiXdhmLjM?si=Px1CUeWqnXqQuo7y",
     thumbnail: "/kenya-sometimes/aWCa18V8.jpg",
     isPlaylist: false
   },
