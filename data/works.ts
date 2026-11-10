@@ -153,20 +153,67 @@ export const worksData: Work[] = [
   },
   {
     id: "dance-into-space",
-    title: "DANCE INTO SPACE",
+    title: "DANCE INTO SPACE & WAKATI",
     period: "1997–Present",
     category: "Artistic Platform",
-    description: "The company and platform founded by Ondiege, pioneering contemporary and inclusive mixed-ability dance across theatres, schools, and unconventional spaces in East Africa.",
-    themes: ["Company", "Training", "Inclusion"],
-    image: "/kenya-sometimes/dis.jpg",
-    imageAlt: "Onyango Ondiege in dynamic choreographic flight with open coat representing Dance Into Space",
+    description: "The company and platform founded by Ondiege, launched with the seminal solo Wakati (The Times) at the Kenya National Theatre, pioneering contemporary and inclusive mixed-ability dance across East Africa.",
+    themes: ["Company", "Training", "Inclusion", "Pioneering Solo"],
+    image: "/photos/clean/wakati-solo-1997.jpg",
+    imageAlt: "Onyango Ondiege in Wakati at Kenya National Theatre 1997",
     gallery: [
+      {
+        type: "image",
+        url: "/photos/clean/wakati-solo-1997.jpg",
+        alt: "Ondiege in Wakati at Kenya National Theatre (1997)",
+        caption: "Wakati (The Times) Solo · 1997",
+        categoryTag: "Company Launch"
+      },
+      {
+        type: "image",
+        url: "/photos/clean/wakati-duet-1998-1.jpg",
+        alt: "DIS Wakati Duet at Goethe-Institut (1998)",
+        caption: "Wakati Duet · Goethe-Institut 1998",
+        categoryTag: "Stage Repertoire"
+      },
       {
         type: "image",
         url: "/kenya-sometimes/dis.jpg",
         alt: "Choreographic leap representing Dance Into Space",
         caption: "Pioneering inclusive dance since 1997",
         categoryTag: "Company History"
+      }
+    ]
+  },
+  {
+    id: "paths",
+    title: "PATHS",
+    period: "2012",
+    category: "Multimedia Dance Film",
+    description: "A notable multimedia contemporary dance and film collaboration between Dance Into Space and award-winning Danish director Vibeke Muasya, blending live choreography and cinematic language.",
+    themes: ["Dance Film", "Multimedia", "Collaboration"],
+    image: "/photos/clean/paths-1.jpg",
+    imageAlt: "Paths contemporary dance and film project still",
+    gallery: [
+      {
+        type: "image",
+        url: "/photos/clean/paths-1.jpg",
+        alt: "Paths multimedia choreographic still",
+        caption: "Paths (2012) · Dir. Vibeke Muasya",
+        categoryTag: "Dance Film"
+      },
+      {
+        type: "image",
+        url: "/photos/clean/paths-2.jpg",
+        alt: "Paths expressive choreographic encounter",
+        caption: "Paths · Kinesthetic Dialogue",
+        categoryTag: "Multimedia"
+      },
+      {
+        type: "image",
+        url: "/photos/clean/paths-3.jpg",
+        alt: "Paths movement frame",
+        caption: "Paths · Movement Architecture",
+        categoryTag: "Film Archive"
       }
     ]
   }

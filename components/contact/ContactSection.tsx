@@ -1,5 +1,5 @@
-import {contactData} from "@/data/contact";
-import {SectionHeading} from "@/components/ui/SectionHeading";
+import { contactData } from "@/data/contact";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export function ContactSection() {
   return (
@@ -106,11 +106,16 @@ export function ContactSection() {
 
               <div className="pt-4">
                 <span className="font-mono text-[0.6875rem] uppercase tracking-widest text-[var(--color-burnt-orange-light)] block mb-1">
-                  YouTube
+                  YouTube Channel / Playlist
                 </span>
-                <span className="text-[var(--color-neutral-light)] italic">
-                  {contactData.youtube}
-                </span>
+                <a
+                  href={contactData.youtube}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[var(--color-cream)] hover:text-[var(--color-burnt-orange-light)] underline underline-offset-4 transition-colors break-all"
+                >
+                  Dance Into Space Playlist ↗
+                </a>
               </div>
 
               <div className="pt-4">

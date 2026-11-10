@@ -1,8 +1,8 @@
 export const contactData = {
-  email: "Professional email to be supplied",
-  phone: "Contact details to be supplied",
+  email: "ondiege@danceintospace.org",
+  phone: "+254721791298 / 0754483075 ",
   facebook: "https://facebook.com/ondiege.matthew",
-  youtube: "Preferred channel or playlist link to be supplied",
+  youtube: "https://www.youtube.com/playlist?list=PLgHHTCZotu-jC4IzoQqlhPGttBGIsy5Xv",
   blog: "https://ondiegeogw.blogspot.com",
   location: "Nairobi · Kenya · East Africa"
 };

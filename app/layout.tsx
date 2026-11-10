@@ -49,7 +49,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${playfairDisplay.variable} ${urbanist.variable} ${jetbrainsMono.variable}`}
     >
-      <body>{children}</body>
+      <body suppressHydrationWarning>{children}</body>
     </html>
   );
 }

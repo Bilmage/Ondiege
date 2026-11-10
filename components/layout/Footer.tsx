@@ -50,6 +50,14 @@ export function Footer() {
               >
                 Blog →
               </a>
+              <a
+                href={contactData.youtube}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-body text-sm text-[var(--color-cream)]/70 hover:text-[var(--color-burnt-orange)] transition-colors duration-300"
+              >
+                YouTube →
+              </a>
             </div>
           </div>
 
