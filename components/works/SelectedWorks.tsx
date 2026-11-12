@@ -1,6 +1,6 @@
 "use client";
 
-import {useState} from "react";
+import {useRef, useState} from "react";
 import Image from "next/image";
 import {WorkMediaItem, worksData} from "@/data/works";
 import {SectionHeading} from "@/components/ui/SectionHeading";
@@ -13,8 +13,16 @@ export function SelectedWorks() {
 
   // Tab state for Portfolio view: 'all' | 'kenya-sometimes' | 'nyanam'
   const [activeTab, setActiveTab] = useState<"all" | "kenya-sometimes" | "nyanam">("all");
-  const [showKenyaVideo, setShowKenyaVideo] = useState(false);
+  const [isPlayingTrailer, setIsPlayingTrailer] = useState(false);
   const [showNyanamVideo, setShowNyanamVideo] = useState(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  const handlePlayTrailer = () => {
+    if (videoRef.current) {
+      videoRef.current.play();
+      setIsPlayingTrailer(true);
+    }
+  };
 
   // Helper to extract clean YouTube embed URL (works for normal video & playlists)
   const getEmbedUrl = (url?: string, isPlaylist = false) => {
@@ -123,26 +131,37 @@ export function SelectedWorks() {
                 aria-hidden="true"
               />
 
-              {/* Main Media Showcase */}
-              <div className="relative z-10 aspect-[3/4] sm:aspect-[4/5] max-h-[660px] w-full overflow-hidden bg-[var(--color-charcoal)] shadow-2xl border border-[var(--color-charcoal)]/15">
-                {!showKenyaVideo ? (
-                  <div className="relative w-full h-full group">
-                    <Image
-                      src={kenyaSometimes.image}
-                      alt={kenyaSometimes.imageAlt}
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 58vw"
-                      className="object-cover object-center filter contrast-110 grayscale hover:grayscale-0 transition-all duration-700"
-                      priority
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-charcoal)]/85 via-transparent to-transparent pointer-events-none" />
+              {/* Main Media Showcase: Local Performance Trailer */}
+              <div className="relative z-10 aspect-[3/4] sm:aspect-[4/5] max-h-[660px] w-full overflow-hidden bg-[var(--color-charcoal)] shadow-2xl border border-[var(--color-charcoal)]/15 group">
+                <video
+                  ref={videoRef}
+                  controls={isPlayingTrailer}
+                  playsInline
+                  preload="metadata"
+                  poster={kenyaSometimes.image}
+                  onPlay={() => setIsPlayingTrailer(true)}
+                  onPause={() => setIsPlayingTrailer(false)}
+                  onEnded={() => setIsPlayingTrailer(false)}
+                  className="w-full h-full object-cover object-center filter contrast-105"
+                  aria-label="Kenya Sometimes performance trailer video"
+                >
+                  <source src="/video/performance-reel-2.mp4" type="video/mp4" />
+                  <source src="/video/performance-reel.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
 
-                    {/* Circular Play Button to trigger embedded YouTube performance */}
+                {/* Circular Play Button Overlay */}
+                {!isPlayingTrailer && (
+                  <div
+                    onClick={handlePlayTrailer}
+                    className="absolute inset-0 flex items-center justify-center cursor-pointer bg-black/25 group-hover:bg-black/40 transition-colors z-20"
+                    aria-label="Play trailer"
+                  >
                     <button
                       type="button"
-                      onClick={() => setShowKenyaVideo(true)}
-                      className="absolute inset-0 m-auto w-20 h-20 sm:w-24 sm:h-24 rounded-full border-2 border-white flex items-center justify-center bg-black/40 backdrop-blur-sm group-hover:scale-110 group-hover:border-[var(--color-burnt-orange)] group-hover:bg-[var(--color-burnt-orange)]/80 transition-all duration-300 shadow-xl cursor-pointer"
-                      aria-label="Play Kenya Sometimes performance video"
+                      onClick={handlePlayTrailer}
+                      className="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-2 border-white flex items-center justify-center bg-[var(--color-burnt-orange)]/90 backdrop-blur-sm group-hover:scale-110 group-hover:bg-[var(--color-burnt-orange)] transition-all duration-300 shadow-2xl cursor-pointer"
+                      aria-label="Play Kenya Sometimes trailer"
                     >
                       <svg
                         className="w-8 h-8 sm:w-10 sm:h-10 text-white translate-x-1"
@@ -152,30 +171,15 @@ export function SelectedWorks() {
                         <path d="M8 5v14l11-7z" />
                       </svg>
                     </button>
-
-                    <div className="absolute top-4 left-4 z-20">
-                      <span className="font-mono text-[0.625rem] uppercase tracking-widest px-2.5 py-1 bg-[var(--color-charcoal)] text-[var(--color-cream-light)] border border-white/20">
-                        CLICK TO WATCH RECORDING
-                      </span>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="w-full h-full relative bg-black">
-                    <iframe
-                      src={`${getEmbedUrl(kenyaSometimes.youtubeUrl)}?autoplay=1`}
-                      title="Kenya Sometimes Performance"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      className="w-full h-full border-0"
-                    />
-                    <button
-                      onClick={() => setShowKenyaVideo(false)}
-                      className="absolute top-3 right-3 z-30 px-3 py-1 bg-[var(--color-charcoal)]/90 text-white font-mono text-xs uppercase tracking-wider hover:bg-[var(--color-burnt-orange)] transition-colors"
-                    >
-                      ✕ Close Video
-                    </button>
                   </div>
                 )}
+
+                {/* Archival Badge */}
+                <div className="absolute top-4 left-4 z-20 pointer-events-none">
+                  <span className="font-mono text-[0.625rem] uppercase tracking-widest px-2.5 py-1 bg-[var(--color-charcoal)]/90 text-[var(--color-cream-light)] border border-white/20 backdrop-blur-sm">
+                    {isPlayingTrailer ? "NOW PLAYING // TRAILER" : "CLICK TO PLAY TRAILER"}
+                  </span>
+                </div>
               </div>
 
               {/* Red Accent Geometry Box (Reference Motif with high-contrast readable typography) */}
